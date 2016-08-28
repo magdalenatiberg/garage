@@ -10,3 +10,5 @@ out
 # Maven
 log/
 target/
+/src/main/java/database/DatabaseTestFile.java
+/src/main/java/database/DatabaseConnector.java
