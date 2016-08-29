@@ -28,9 +28,13 @@ public class DatabaseConnector {
         }
     }
 
-    public int executeQuery(String query) throws SQLException {
+    public int executeUpdateQuery(String query) throws SQLException {
         Statement statement = connection.createStatement();
         return statement.executeUpdate(query);
+    }
+    public ResultSet executeQuery(String query) throws SQLException {
+        Statement statement = connection.createStatement();
+        return statement.executeQuery(query);
     }
 
     public void close() throws SQLException {
