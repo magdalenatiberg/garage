@@ -1,7 +1,7 @@
 .idea
 .settings
-.project
 .classpath
+.project
 target
 out
 *.jar

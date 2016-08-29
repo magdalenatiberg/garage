@@ -11,6 +11,7 @@ public class ServiceError {
     public static final String INVALID_ADDRESS_STREET = "103";
     public static final String INVALID_ADDRESS_ZIP_CODE = "104";
     public static final String INVALID_ADDRESS_CITY = "105";
+    public static final String CUSTOMER_IS_REGISTERED = "106";
 
     public enum Error {
         INVALID_CUSTOMER_ID(ServiceError.INVALID_CUSTOMER_ID),
