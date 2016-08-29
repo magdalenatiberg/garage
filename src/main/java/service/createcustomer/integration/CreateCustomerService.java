@@ -2,32 +2,31 @@ package service.createcustomer.integration;
 
 import database.DatabaseConnector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ExceptionDepthComparator;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import service.createcustomer.integration.translator.CreateCustomerQueryTranslator;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * Created by E600783 on 15.06.2016.
  */
-@Service("integration.createcustomer")
+@Repository("integration.createcustomer")
 public class CreateCustomerService {
 
-    @Autowired
     private DatabaseConnector databaseConnector;
 
     @Autowired
     private CreateCustomerQueryTranslator createCustomerQueryTranslator;
 
-    public CreateCustomerService () {}
+    public CreateCustomerService () {
+        databaseConnector = new DatabaseConnector();
+    }
 
     public void createCustomer(CreateCustomerRequest createCustomerRequest) throws SQLException, Exception {
         try {
             databaseConnector.connect();
             String query = createCustomerQueryTranslator.createQuery(createCustomerRequest);
-            int numberOfAffectedRows = databaseConnector.executeQuery(query);
+            int numberOfAffectedRows = databaseConnector.executeUpdateQuery(query);
             databaseConnector.close();
             if(numberOfAffectedRows < 1) {
                 System.out.println("No affected rows");

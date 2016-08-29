@@ -26,14 +26,25 @@ public class GetCustomerResponse implements ServiceResponse{
         return serviceErrors;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
     public static final class Builder {
+        private Customer customer;
         private String status;
         private List<ServiceError> serviceErrors;
+
+        public Builder customer(Customer customer) {
+            this.customer = customer;
+            return this;
+        }
 
         public Builder status(String status) {
             this.status = status;
             return this;
         }
+
         public Builder serviceErrors(List<ServiceError> serviceErrors) {
             this.serviceErrors = serviceErrors;
             return this;

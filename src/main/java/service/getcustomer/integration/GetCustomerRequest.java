@@ -1,4 +1,4 @@
-package service.getcustomer.business;
+package service.getcustomer.integration;
 
 import service.common.api.validation.customer.CustomerId;
 import service.getcustomer.business.api.ServiceError;
@@ -6,9 +6,8 @@ import service.getcustomer.business.api.ServiceError;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Magdalena on 8/27/2016.
+ * Created by Magdalena on 8/28/2016.
  */
-
 public class GetCustomerRequest {
     @CustomerId(message = ServiceError.INVALID_CUSTOMER_ID)
     @NotNull(message = ServiceError.INVALID_CUSTOMER_ID)
