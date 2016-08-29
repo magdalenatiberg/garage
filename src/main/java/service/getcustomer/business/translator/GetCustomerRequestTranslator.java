@@ -6,7 +6,7 @@ import service.getcustomer.integration.GetCustomerRequest;
 /**
  * Created by Magdalena on 8/28/2016.
  */
-@Component
+@Component("service.getcustomer.business.translator.GetCustomerRequestTranslator")
 public class GetCustomerRequestTranslator {
 
     public GetCustomerRequest translate(service.getcustomer.business.GetCustomerRequest originalRequest) {

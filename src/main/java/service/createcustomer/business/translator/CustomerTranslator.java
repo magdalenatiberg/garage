@@ -7,7 +7,7 @@ import service.createcustomer.integration.api.Customer;
 /**
  * Created by e600783 on 18.06.2016.
  */
-@Component
+@Component("service.createcustomer.business.translator.CustomerTranslator")
 public class CustomerTranslator {
 
     @Autowired

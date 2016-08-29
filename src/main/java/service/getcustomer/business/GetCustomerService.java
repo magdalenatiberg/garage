@@ -24,9 +24,11 @@ public class GetCustomerService {
     private static final service.common.validation.ValidatorFactory<GetCustomerRequest> validator = new service.common.validation.ValidatorFactory<GetCustomerRequest>();;
 
     @Autowired
+    @Qualifier("service.getcustomer.business.translator.GetCustomerRequestTranslator")
     private GetCustomerRequestTranslator requestTranslator;
 
     @Autowired
+    @Qualifier("service.getcustomer.business.translator.CustomerTranslator")
     private CustomerTranslator customerTranslator;
 
     @Autowired

@@ -6,7 +6,7 @@ import service.getcustomer.business.api.Customer;
 /**
  * Created by Magdalena on 8/28/2016.
  */
-@Component
+@Component("service.getcustomer.business.translator.CustomerTranslator")
 public class CustomerTranslator {
 
     public Customer translate(service.getcustomer.integration.api.Customer customer) {

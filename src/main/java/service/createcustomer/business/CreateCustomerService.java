@@ -1,5 +1,6 @@
 package service.createcustomer.business;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import service.common.api.ServiceError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -8,6 +9,7 @@ import service.createcustomer.business.api.Customer;
 import service.createcustomer.business.translator.CreateCustomerRequestTranslator;
 import service.createcustomer.business.translator.GetCustomerRequestTranslator;
 import service.createcustomer.integration.CreateCustomerRequest;
+import service.getcustomer.business.GetCustomerRequest;
 import service.getcustomer.business.GetCustomerResponse;
 import service.getcustomer.business.GetCustomerService;
 
@@ -29,6 +31,7 @@ public class CreateCustomerService {
     private CreateCustomerRequestTranslator createCustomerRequestTranslator;
     
     @Autowired
+    @Qualifier("service.createcustomer.business.translator.GetCustomerRequestTranslator")
     private GetCustomerRequestTranslator getCustomerRequestTranslator;
 
     @Autowired
@@ -37,23 +40,6 @@ public class CreateCustomerService {
     @Autowired
     private GetCustomerService getCustomerService;
     
-    private boolean isCustomerRegistered(Customer customer) {
-        //GetCustomerRequest getCustomerRequest = getCustomerRequestTranslator.translate(customer);
-
-        GetCustomerResponse getCustomerResponse = getCustomerService.getCustomer(customer.getCustomerId());
-        if(getCustomerResponse != null) {
-        	return true;
-        }
-        return false;
-    }
-    
-    private ServiceError getCustomerIsRegisteredError() {
-    	String errorCode = service.createcustomer.business.api.ServiceError.CUSTOMER_IS_REGISTERED;
-    	return new ServiceError.Builder()
-    			.code(errorCode)
-    			.build();
-    }
-
     @RequestMapping(method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody CreateCustomerResponse createCustomer(@RequestBody Customer customer) {
 
@@ -87,5 +73,22 @@ public class CreateCustomerService {
                     .serviceErrors(errors)
                     .build();
         }
+    }
+
+    private boolean isCustomerRegistered(Customer customer) {
+        GetCustomerRequest getCustomerRequest = getCustomerRequestTranslator.translate(customer);
+
+        GetCustomerResponse getCustomerResponse = getCustomerService.getCustomer(getCustomerRequest);
+        if(getCustomerResponse.getCustomer() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private ServiceError getCustomerIsRegisteredError() {
+        String errorCode = service.createcustomer.business.api.ServiceError.CUSTOMER_IS_REGISTERED;
+        return new ServiceError.Builder()
+                .code(errorCode)
+                .build();
     }
 }

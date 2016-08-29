@@ -15,6 +15,7 @@ public class GetCustomerResponse implements ServiceResponse{
     private List<ServiceError> serviceErrors;
 
     public GetCustomerResponse(Builder builder) {
+        this.customer = builder.customer;
         this.status = builder.status;
         this.serviceErrors = builder.serviceErrors;
     }
