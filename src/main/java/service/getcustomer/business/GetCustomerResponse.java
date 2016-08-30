@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Magdalena on 8/27/2016.
  */
-public class GetCustomerResponse implements ServiceResponse{
+public class GetCustomerResponse implements ServiceResponse {
     private Customer customer;
     private String status;
     private List<ServiceError> serviceErrors;

@@ -13,7 +13,6 @@ public class ServiceError {
     public static final String INVALID_ADDRESS_CITY = "15";
     public static final String INVALID_ADDRESS = "16";
     public static final String INVALID_PHONE_NUMBER = "17";
-
     public static final String INVALID_EMAIL_ADDRESS = "18";
 
     public static final String CUSTOMER_IS_REGISTERED = "100";

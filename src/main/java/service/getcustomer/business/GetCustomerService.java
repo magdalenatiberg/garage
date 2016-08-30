@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import service.common.api.ServiceError;
-import service.getcustomer.business.api.Customer;
 import service.getcustomer.business.translator.CustomerTranslator;
 import service.getcustomer.business.translator.GetCustomerRequestTranslator;
+import service.getcustomer.integration.api.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,6 @@ public class GetCustomerService {
     @RequestMapping(method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody GetCustomerResponse getCustomer(@RequestBody GetCustomerRequest request) {
 
-        String customerId = request.getCustomerId();
         try {
             List<ServiceError> validationErrors = validator.validate(request);
             if (validationErrors != null && validationErrors.size() > 0) {
@@ -48,11 +47,20 @@ public class GetCustomerService {
             }
 
             service.getcustomer.integration.GetCustomerRequest getCustomerRequest = requestTranslator.translate(request);
-            Customer customer = customerTranslator.translate(getCustomerService.getCustomer(getCustomerRequest));
+            Customer customer = getCustomerService.getCustomer(getCustomerRequest);
 
-            return new GetCustomerResponse.Builder()
-                    .customer(customer)
-                    .build();
+            if(customer != null) {
+            	return new GetCustomerResponse.Builder()
+                        .customer(customerTranslator.translate(customer))
+                        .build();
+            } else {
+            	List<ServiceError> errors = new ArrayList<>();
+            	errors.add(getCustomerNotFoundError());
+            	return new GetCustomerResponse.Builder()
+            			.serviceErrors(errors)
+            			.build();
+            }
+        	
         }
 
         catch(Exception exception) {
@@ -60,5 +68,12 @@ public class GetCustomerService {
             errors.add(new ServiceError(ServiceError.Error.GENERAL_ERROR));
             return null;
         }
+    }
+   
+    public ServiceError getCustomerNotFoundError() {
+    	return new ServiceError.Builder()
+    			.code(service.getcustomer.business.api.ServiceError.NO_CUSTOMER_FOUND)
+    			.build();
+
     }
 }

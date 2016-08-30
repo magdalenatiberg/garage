@@ -6,6 +6,7 @@ package service.getcustomer.business.api;
 public class ServiceError {
 
     public static final String INVALID_CUSTOMER_ID = "10";
+    public static final String NO_CUSTOMER_FOUND = "100";
 
     public enum Error {
         INVALID_CUSTOMER_ID(ServiceError.INVALID_CUSTOMER_ID);
