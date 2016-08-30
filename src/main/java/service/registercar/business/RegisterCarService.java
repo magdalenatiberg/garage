@@ -1,4 +1,4 @@
-package service.registercar;
+package service.registercar.business;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +9,6 @@ public class RegisterCarService {
 	
 	public @ResponseBody RegisterCarResponse registerCar(@RequestBody RegisterCarRequest registerCarRequest) {
 		return null;
-		
 	}
 
 }

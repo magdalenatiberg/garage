@@ -1,4 +1,4 @@
-package service.registercar.api;
+package service.registercar.business.api;
 
 
 public class ServiceError {
