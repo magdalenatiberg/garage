@@ -1,18 +1,10 @@
-package service.registercar.busienss;
+package service.registercar.integration;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import service.common.api.validation.customer.CustomerId;
-import service.registercar.api.Car;
-import service.registercar.api.ServiceError;
+import service.registercar.integration.api.Car;
 
 public class RegisterCarRequest {
 
-	@CustomerId(message=ServiceError.INVALID_CUSTOMER_ID)
 	private String customerId;
-	@Valid
-	@NotNull(message=ServiceError.INVALID_CAR)
 	private Car car;
 	
 	public RegisterCarRequest() {}

@@ -66,7 +66,9 @@ public class GetCustomerService {
         catch(Exception exception) {
             List<ServiceError> errors = new ArrayList<>();
             errors.add(new ServiceError(ServiceError.Error.GENERAL_ERROR));
-            return null;
+            return new GetCustomerResponse.Builder()
+        			.serviceErrors(errors)
+        			.build();
         }
     }
    
