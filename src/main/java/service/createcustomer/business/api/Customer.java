@@ -1,9 +1,12 @@
 package service.createcustomer.business.api;
 
 import service.common.api.validation.customer.CustomerId;
+import service.common.api.validation.email.Email;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
 
 /**
  * Created by E600783 on 05.06.2016.
@@ -21,10 +24,12 @@ public class Customer {
     @Pattern(regexp = VALID_NAME_REGEP, message=ServiceError.INVALID_LAST_NAME)
     private String lastName;
     @Valid
+    @NotNull(message=ServiceError.INVALID_ADDRESS)
     private Address address;
-    
+    @NotNull(message=ServiceError.INVALID_PHONE_NUMBER)
+    @Pattern(regexp="\\d{2,4}-\\d{5,10}")
     private String phoneNumber;
-    
+    @Email(message=ServiceError.INVALID_EMAIL_ADDRESS)
     private String emailAddress;
 
     public Customer(Builder builder) {

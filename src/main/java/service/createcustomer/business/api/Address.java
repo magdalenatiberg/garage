@@ -8,11 +8,13 @@ import javax.validation.constraints.Pattern;
  */
 public class Address {
 
+	@NotNull(message=ServiceError.INVALID_ADDRESS_STREET)
     @Pattern(regexp="^[a-zA-ZåäöÅÄÖ]{1,50}\\s{1}[a-zA-ZåäöÅÄÖ\\d\\s]{1,60}$", message=ServiceError.INVALID_ADDRESS_STREET)
     private String street;
     @NotNull(message=ServiceError.INVALID_ADDRESS_ZIP_CODE)
     @Pattern(regexp="\\d{5}", message=ServiceError.INVALID_ADDRESS_ZIP_CODE)
     private String zipCode;
+    @NotNull(message=ServiceError.INVALID_ADDRESS_CITY)
     @Pattern(regexp="^[a-zA-ZåäöÅÄÖ]{1,50}\\s{0,1}[a-zA-ZåäöÅÄÖ\\s]{0,50}", message=ServiceError.INVALID_ADDRESS_CITY)
     private String city;
 
