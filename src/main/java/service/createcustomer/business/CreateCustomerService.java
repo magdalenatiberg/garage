@@ -2,6 +2,8 @@ package service.createcustomer.business;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import service.common.api.ServiceError;
+import service.common.api.response.Status;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -47,46 +49,52 @@ public class CreateCustomerService {
             List<ServiceError> validationErrors = validator.validate(customer);
             if (validationErrors != null && validationErrors.size() > 0) {
                 return new CreateCustomerResponse.Builder()
+                		.status(Status.ERRORS.getStatus())
                         .serviceErrors(validationErrors)
                         .build();
             }
 
-            if(isCustomerRegistered(customer)) {
-            	List<ServiceError> serviceErrors = new ArrayList<>();
-            	serviceErrors.add(getCustomerIsRegisteredError());
+            GetCustomerRequest getCustomerRequest = getCustomerRequestTranslator.translate(customer);
+            GetCustomerResponse getCustomerResponse = getCustomerService.getCustomer(getCustomerRequest);
+            if(isCustomerRegistered(getCustomerResponse)) {
+            	String errorCode = service.createcustomer.business.api.ServiceError.CUSTOMER_IS_REGISTERED;
             	return new CreateCustomerResponse.Builder()
-                        .serviceErrors(serviceErrors)
+            			.status(Status.ERRORS.getStatus())
+                        .serviceErrors(getErrorList(errorCode))
                         .build();
             }
             
-            
-            
             CreateCustomerRequest request = createCustomerRequestTranslator.translate(customer);
             createCustomerService.createCustomer(request);
-            return new CreateCustomerResponse.Builder().build();
+            return new CreateCustomerResponse.Builder()
+            		.status(Status.OK.getStatus())
+            		.build();
         }
 
         catch(Exception exception) {
             List<ServiceError> errors = new ArrayList<>();
             errors.add(new ServiceError(ServiceError.Error.GENERAL_ERROR));
             return new CreateCustomerResponse.Builder()
+            		.status(Status.ERRORS.getStatus())
                     .serviceErrors(errors)
                     .build();
         }
     }
 
-    private boolean isCustomerRegistered(Customer customer) {
-        GetCustomerRequest getCustomerRequest = getCustomerRequestTranslator.translate(customer);
-
-        GetCustomerResponse getCustomerResponse = getCustomerService.getCustomer(getCustomerRequest);
+    private boolean isCustomerRegistered(GetCustomerResponse getCustomerResponse) {
         if(getCustomerResponse.getCustomer() != null) {
             return true;
         }
         return false;
     }
 
-    private ServiceError getCustomerIsRegisteredError() {
-        String errorCode = service.createcustomer.business.api.ServiceError.CUSTOMER_IS_REGISTERED;
+    private List<ServiceError> getErrorList(String errorCode) {
+    	List<ServiceError> serviceErrors = new ArrayList<>();
+    	serviceErrors.add(getCustomerIsRegisteredError(errorCode));
+        return serviceErrors;
+    }
+    
+    private ServiceError getCustomerIsRegisteredError(String errorCode) {
         return new ServiceError.Builder()
                 .code(errorCode)
                 .build();
