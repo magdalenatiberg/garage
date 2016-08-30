@@ -49,7 +49,6 @@ public class CreateCustomerService {
             List<ServiceError> validationErrors = validator.validate(customer);
             if (validationErrors != null && validationErrors.size() > 0) {
                 return new CreateCustomerResponse.Builder()
-                		.status(Status.ERRORS.getStatus())
                         .serviceErrors(validationErrors)
                         .build();
             }
@@ -59,7 +58,6 @@ public class CreateCustomerService {
             if(isCustomerRegistered(getCustomerResponse)) {
             	String errorCode = service.createcustomer.business.api.ServiceError.CUSTOMER_IS_REGISTERED;
             	return new CreateCustomerResponse.Builder()
-            			.status(Status.ERRORS.getStatus())
                         .serviceErrors(getErrorList(errorCode))
                         .build();
             }
@@ -75,7 +73,6 @@ public class CreateCustomerService {
             List<ServiceError> errors = new ArrayList<>();
             errors.add(new ServiceError(ServiceError.Error.GENERAL_ERROR));
             return new CreateCustomerResponse.Builder()
-            		.status(Status.ERRORS.getStatus())
                     .serviceErrors(errors)
                     .build();
         }
