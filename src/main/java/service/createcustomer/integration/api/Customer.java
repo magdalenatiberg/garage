@@ -1,24 +1,23 @@
 package service.createcustomer.integration.api;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Created by E600783 on 05.06.2016.
  */
 public class Customer {
-    @NotNull(message = "")
     private String customerId;
-    @NotNull
     private String firstName;
-    @NotNull
     private String lastName;
     private Address address;
+    private String phoneNumber;
+    private String emailAddress;
 
     public Customer(Builder builder) {
         this.customerId = builder.customerId;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.address = builder.address;
+        this.phoneNumber = builder.phoneNumber;
+        this.emailAddress = builder.emailAddress;
     }
 
     public Customer() {}
@@ -38,13 +37,22 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+    
+    public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
     public static final class Builder {
         private String customerId;
         private String firstName;
         private String lastName;
         private Address address;
+        private String phoneNumber;
+        private String emailAddress;
 
         public Builder customerId (String customerId) {
             this.customerId = customerId;
@@ -60,6 +68,16 @@ public class Customer {
         }
         public Builder address (Address address) {
             this.address = address;
+            return this;
+        }
+        
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+        
+        public Builder emailAddress(String emailAddress) {
+            this.emailAddress = emailAddress;
             return this;
         }
 

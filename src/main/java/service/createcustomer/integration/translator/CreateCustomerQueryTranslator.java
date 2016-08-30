@@ -37,7 +37,10 @@ public class CreateCustomerQueryTranslator {
         Address address = customer.getAddress();
         query.append(getValuePart(address.getStreet(), USE_COMMA));
         query.append(getValuePart(address.getZipCode(), USE_COMMA));
-        query.append(getValuePart(address.getCity(), DO_NOT_USE_COMMA));
+        query.append(getValuePart(address.getCity(), USE_COMMA));
+        
+        query.append(getValuePart(customer.getPhoneNumber(), USE_COMMA));
+        query.append(getValuePart(customer.getEmailAddress(), DO_NOT_USE_COMMA));
 
         String part2 = ")";
         query.append(part2);

@@ -32,7 +32,6 @@ public class CreateCustomerService {
                 System.out.println("No affected rows");
                 throw new Exception("No customer created");
             }
-            System.out.println("Numer of affected rows: " + numberOfAffectedRows);
 
         } catch(SQLException exception) {
             System.out.println("An error occured, error code: " + exception.getErrorCode());

@@ -6,7 +6,7 @@ import service.createcustomer.integration.api.Address;
 /**
  * Created by e600783 on 04.07.2016.
  */
-@Component
+@Component("service.createcustomer.business.translator.AddressTranslator")
 public class AddressTranslator {
 
     public Address translate(service.createcustomer.business.api.Address address) {

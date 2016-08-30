@@ -24,7 +24,8 @@ public class ServiceError {
         INVALID_CUSTOMER_ID("100");
         INVALID_CUSTOMER_ID("100"); */
 
-        private String getCode() {
+        @SuppressWarnings("unused")
+		private String getCode() {
             return code;
         }
         Error(String code) {
