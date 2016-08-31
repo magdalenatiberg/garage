@@ -1,7 +1,7 @@
 package service.getcustomer.business;
 
-import service.common.api.ServiceError;
-import service.common.api.ServiceResponse;
+import service.common.response.ServiceError;
+import service.common.response.ServiceResponse;
 import service.getcustomer.business.api.Customer;
 
 import java.util.List;

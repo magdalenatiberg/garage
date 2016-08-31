@@ -3,7 +3,7 @@ package service.registercar.business.api;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import service.common.api.validation.registrationnumber.RegistrationNumber;
+import service.common.validation.registrationnumber.RegistrationNumber;
 
 public class Car {
 

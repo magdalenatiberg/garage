@@ -1,4 +1,4 @@
-package service.common.api;
+package service.common.response;
 
 /**
  * Created by E600783 on 15.06.2016.

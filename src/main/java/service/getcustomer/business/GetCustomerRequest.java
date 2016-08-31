@@ -1,6 +1,6 @@
 package service.getcustomer.business;
 
-import service.common.api.validation.customer.CustomerId;
+import service.common.validation.customer.CustomerId;
 import service.getcustomer.business.api.ServiceError;
 
 import javax.validation.constraints.NotNull;

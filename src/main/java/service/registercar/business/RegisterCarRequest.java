@@ -3,12 +3,13 @@ package service.registercar.business;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import service.common.api.validation.customer.CustomerId;
+import service.common.validation.customer.CustomerId;
 import service.registercar.business.api.Car;
 import service.registercar.business.api.ServiceError;
 
 public class RegisterCarRequest {
 
+	@NotNull(message=ServiceError.INVALID_CUSTOMER_ID)
 	@CustomerId(message=ServiceError.INVALID_CUSTOMER_ID)
 	private String customerId;
 	@Valid

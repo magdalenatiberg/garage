@@ -1,4 +1,4 @@
-package service.common.api.validation.customer;
+package service.common.validation.customer;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

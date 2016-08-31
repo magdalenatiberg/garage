@@ -1,4 +1,4 @@
-package service.common.api.validation.email;
+package service.common.validation.email;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;

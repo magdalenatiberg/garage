@@ -1,4 +1,4 @@
-package service.common.api.validation.email;
+package service.common.validation.email;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;

@@ -1,4 +1,4 @@
-package service.common.api.validation.registrationnumber;
+package service.common.validation.registrationnumber;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -11,11 +11,9 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import service.common.api.validation.email.EmailValidator;
-
 @Target( { METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = EmailValidator.class)
+@Constraint(validatedBy = RegistrationNumberValidator.class)
 @Documented
 public @interface RegistrationNumber {
 	String message() default "{com.mycompany.constraints.checkcase}";

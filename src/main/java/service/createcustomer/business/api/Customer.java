@@ -1,7 +1,7 @@
 package service.createcustomer.business.api;
 
-import service.common.api.validation.customer.CustomerId;
-import service.common.api.validation.email.Email;
+import service.common.validation.customer.CustomerId;
+import service.common.validation.email.Email;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

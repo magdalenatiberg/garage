@@ -18,10 +18,10 @@ public class CreateCustomerRequestTranslator {
 
     public CreateCustomerRequestTranslator() {}
 
-    public CreateCustomerRequest translate(Customer customer) {
+    public CreateCustomerRequest translate(service.createcustomer.business.CreateCustomerRequest createCustomerRequest) {
 
         return new CreateCustomerRequest.Builder()
-                .customer(customerTranslator.translate(customer))
+                .customer(customerTranslator.translate(createCustomerRequest.getCustomer()))
                 .build();
     }
 }

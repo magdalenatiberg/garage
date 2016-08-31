@@ -1,11 +1,7 @@
-package service.common.api.validation.registrationnumber;
+package service.common.validation.registrationnumber;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
-import service.common.api.validation.email.Email;
 
 public class RegistrationNumberValidator implements ConstraintValidator<RegistrationNumber, String> {
 	@Override

@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import service.common.api.ServiceError;
-import service.getcustomer.business.GetCustomerRequest;
-import service.getcustomer.business.GetCustomerResponse;
+import service.common.response.ServiceError;
 import service.registercar.business.translator.RegisterCarRequestTranslator;
 
 @Service("service.registercar.business.RegisterCarService")

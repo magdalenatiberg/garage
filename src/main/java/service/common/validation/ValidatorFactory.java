@@ -1,6 +1,6 @@
 package service.common.validation;
 
-import service.common.api.ServiceError;
+import service.common.response.ServiceError;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -35,7 +35,7 @@ public class ValidatorFactory<T> {
             List<ServiceError> serviceErrors = new ArrayList<>();
             Iterator iterator = constraintViolations.iterator();
             while(iterator.hasNext()) {
-                ConstraintViolation c = (ConstraintViolation) iterator.next();
+				ConstraintViolation<T> c = (ConstraintViolation<T>) iterator.next();
                 String message = c.getMessage();
                 serviceErrors.add(new ServiceError.Builder().code(message).message(ServiceError.VALIDATION_ERROR_MESSAGE).build());
             }

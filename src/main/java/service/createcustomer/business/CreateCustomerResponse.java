@@ -1,14 +1,14 @@
 package service.createcustomer.business;
 
-import service.common.api.ServiceError;
-import service.common.api.ServiceResponse;
+import service.common.response.ServiceError;
+import service.common.response.ServiceResponse;
 
 import java.util.List;
 
 /**
  * Created by E600783 on 29.06.2016.
  */
-public class CreateCustomerResponse implements ServiceResponse{
+public class CreateCustomerResponse implements ServiceResponse {
     private String status;
     private List<ServiceError> serviceErrors;
 

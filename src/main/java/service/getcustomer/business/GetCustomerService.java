@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import service.common.api.ServiceError;
+import service.common.response.ServiceError;
 import service.getcustomer.business.translator.CustomerTranslator;
 import service.getcustomer.business.translator.GetCustomerRequestTranslator;
 import service.getcustomer.integration.api.Customer;
@@ -36,18 +36,18 @@ public class GetCustomerService {
     private service.getcustomer.integration.GetCustomerService getCustomerService;
 
     @RequestMapping(method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody GetCustomerResponse getCustomer(@RequestBody GetCustomerRequest request) {
+    public @ResponseBody GetCustomerResponse getCustomer(@RequestBody GetCustomerRequest getCustomerRequest) {
 
         try {
-            List<ServiceError> validationErrors = validator.validate(request);
+            List<ServiceError> validationErrors = validator.validate(getCustomerRequest);
             if (validationErrors != null && validationErrors.size() > 0) {
                 return new GetCustomerResponse.Builder()
                         .serviceErrors(validationErrors)
                         .build();
             }
 
-            service.getcustomer.integration.GetCustomerRequest getCustomerRequest = requestTranslator.translate(request);
-            Customer customer = getCustomerService.getCustomer(getCustomerRequest);
+            service.getcustomer.integration.GetCustomerRequest getCustomerIntegrationRequest = requestTranslator.translate(getCustomerRequest);
+            Customer customer = getCustomerService.getCustomer(getCustomerIntegrationRequest);
 
             if(customer != null) {
             	return new GetCustomerResponse.Builder()

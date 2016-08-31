@@ -1,4 +1,4 @@
-package service.common.api.response;
+package service.common.response;
 
 public enum Status {
 	OK("OK");

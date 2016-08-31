@@ -9,9 +9,9 @@ import service.getcustomer.integration.GetCustomerRequest;
 @Component("service.getcustomer.business.translator.GetCustomerRequestTranslator")
 public class GetCustomerRequestTranslator {
 
-    public GetCustomerRequest translate(service.getcustomer.business.GetCustomerRequest originalRequest) {
+    public GetCustomerRequest translate(service.getcustomer.business.GetCustomerRequest getCustomerRquest) {
         return new GetCustomerRequest.Builder()
-                .customerId(originalRequest.getCustomerId())
+                .customerId(getCustomerRquest.getCustomerId())
                 .build();
     }
 }

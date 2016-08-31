@@ -1,7 +1,7 @@
 package service.registercar.business;
 
-import service.common.api.ServiceError;
-import service.common.api.ServiceResponse;
+import service.common.response.ServiceError;
+import service.common.response.ServiceResponse;
 
 import java.util.List;
 

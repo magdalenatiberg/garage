@@ -1,4 +1,4 @@
-package service.common.api.validation.customer;
+package service.common.validation.customer;
 
 /**
  * Created by e600783 on 04.07.2016.
