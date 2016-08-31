@@ -14,7 +14,7 @@ public class AddressTranslator {
 		try {
 			return new Address.Builder()
 					.street(resultSet.getString("address_street"))
-					.zipCode(resultSet.getString("address_zip_code"))
+					.zipCode(resultSet.getString("address_zipcode"))
 					.city(resultSet.getString("address_city"))
 					.build();
 	
