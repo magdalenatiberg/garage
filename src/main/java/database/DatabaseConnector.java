@@ -36,6 +36,15 @@ public class DatabaseConnector {
         Statement statement = connection.createStatement();
         return statement.executeQuery(query);
     }
+    
+    public CallableStatement getCallableStatement(String procedureSignature) throws SQLException {
+    	try {
+        	return connection.prepareCall(procedureSignature);
+    	} catch(SQLException sqlException) {
+    		throw sqlException;
+    	}
+
+    }
 
     public void close() throws SQLException {
         if(connection != null) {

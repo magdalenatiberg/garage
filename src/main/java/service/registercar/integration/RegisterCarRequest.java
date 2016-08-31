@@ -13,6 +13,12 @@ public class RegisterCarRequest {
 		this.customerId = builder.customerId;
 		this.car = builder.car;
 	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public Car getCar() {
+		return car;
+	}
 	
 	public static class Builder {
 		private String customerId;

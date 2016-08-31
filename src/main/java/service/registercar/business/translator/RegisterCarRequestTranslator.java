@@ -11,10 +11,10 @@ public class RegisterCarRequestTranslator {
 	@Autowired
 	private CarTranslator carTranslator;
 	
-	public RegisterCarRequest translate(service.registercar.business.RegisterCarRequest originalRequest) {
+	public RegisterCarRequest translate(service.registercar.business.RegisterCarRequest registerCarRequest) {
 		return new RegisterCarRequest.Builder()
-				.customerId(originalRequest.getCustomerId())
-				.car(carTranslator.translate(originalRequest.getCar()))
+				.customerId(registerCarRequest.getCustomerId())
+				.car(carTranslator.translate(registerCarRequest.getCar()))
 				.build();
 	}
 }
