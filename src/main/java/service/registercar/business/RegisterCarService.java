@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.common.response.ServiceError;
+import service.registercar.business.translator.ErrorTranslator;
 import service.registercar.business.translator.RegisterCarRequestTranslator;
 
 @Service("service.registercar.business.RegisterCarService")
@@ -26,6 +27,10 @@ public class RegisterCarService {
 	@Qualifier("service.registercar.integration.RegisterCarService")
 	private service.registercar.integration.RegisterCarService registerCarService;
 	
+	@Autowired
+	@Qualifier("service.registercar.business.translator.ErrorTranslator")
+	private ErrorTranslator errorTranslator;
+	
 	public @ResponseBody RegisterCarResponse registerCar(@RequestBody RegisterCarRequest registerCarRequest) {
 		
 		try {
@@ -36,9 +41,18 @@ public class RegisterCarService {
                         .build();
             }
             service.registercar.integration.RegisterCarRequest registerCarIntegrationRequest = requestTranslator.translate(registerCarRequest);
-            registerCarService.registerCar(registerCarIntegrationRequest);
+            service.registercar.integration.RegisterCarResponse registerCarResponse = registerCarService.registerCar(registerCarIntegrationRequest);
+            
+            if(registerCarResponse.getServiceError() == null) {
+            	return new RegisterCarResponse.Builder()
+                		.status(Status.OK.getStatus())
+                		.build();
+            }
+            List<ServiceError> serviceErrors = new ArrayList<>();
+            serviceErrors.add(errorTranslator.translate(registerCarResponse.getServiceError()));
             return new RegisterCarResponse.Builder()
             		.status(Status.OK.getStatus())
+            		.serviceErrors(serviceErrors)
             		.build();
 		}
 		

@@ -9,7 +9,9 @@ public class ServiceError {
     public static final String INVALID_MODEL = "14";
 	public static final String INVALID_MODEL_YEAR = "15";
 
-    public static final String CAR_ALREADY_REGISTERED_ON_CUSTOMER = "100";
+	public static final String CAR_ALREADY_REGISTERED = "100";
+	public static final String CAR_IS_ALREADY_REGISTERED_ON_CUSTOMER = "101";
+	public static final String CUSTOMER_DOES_NOT_EXIST = "102";
 
     public enum Error {
         INVALID_CUSTOMER_ID(ServiceError.INVALID_CUSTOMER_ID);
