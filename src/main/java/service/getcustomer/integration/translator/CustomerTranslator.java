@@ -20,6 +20,8 @@ public class CustomerTranslator {
                 .firstName(resultSet.getString("firstname"))
                 .lastName(resultSet.getString("lastname"))
                 .address(addressTranslator.translate(resultSet))
+                .phoneNumber(resultSet.getString("phone_number"))
+                .emailAddress(resultSet.getString("email_address"))
                 .build();
 	}
 }
